@@ -2,7 +2,7 @@ import { Table } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const PAGINATION_PAGE_SIZES = [10, 20, 50, 100];
+const PAGINATION_PAGE_SIZES = [5, 10, 20, 50];
 
 interface TablePaginationProps<TData> {
   table: Table<TData>;

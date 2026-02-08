@@ -103,8 +103,8 @@ export default function GeneralTable<TState, TData extends TState, TValue>({
                     className={cn(
                       "px-2",
                       headerClass,
-                      header.column.columnDef.meta?.columnClass ?? "",
-                      header.column.columnDef.meta?.headerClass ?? ""
+                      (header.column.columnDef.meta as any)?.columnClass ?? "",
+                      (header.column.columnDef.meta as any)?.headerClass ?? ""
                     )}
                     style={{ width: header.getSize() }}
                   >
@@ -151,8 +151,8 @@ export default function GeneralTable<TState, TData extends TState, TValue>({
                             className={cn(
                               "border-r px-2 py-2 whitespace-normal last:border-r-0",
                               cellClass,
-                              cell.column.columnDef.meta?.columnClass ?? "",
-                              cell.column.columnDef.meta?.cellClass ?? ""
+                              (cell.column.columnDef.meta as any)?.columnClass ?? "",
+                              (cell.column.columnDef.meta as any)?.cellClass ?? ""
                             )}
                           >
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
