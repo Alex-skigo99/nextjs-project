@@ -14,7 +14,8 @@ import {
 import { LayoutDashboard, Mail } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/const/locale";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, CONTACT_LOCALE_COOKIE } from "@/const/locale";
+import { readCookieValue } from "@/utils/readCookieValue";
 
 type MenuItem = {
   label: string;
@@ -22,8 +23,6 @@ type MenuItem = {
   icon: LucideIcon;
   localized?: boolean;
 };
-
-const CONTACT_LOCALE_COOKIE = "NEXT_LOCALE";
 
 const menuItems: MenuItem[] = [
   {
@@ -38,20 +37,6 @@ const menuItems: MenuItem[] = [
     localized: true,
   },
 ];
-
-function readCookieValue(name: string) {
-  if (typeof document === "undefined") {
-    return null;
-  }
-
-  const cookie = document.cookie.split("; ").find((entry) => entry.startsWith(`${name}=`));
-
-  if (!cookie) {
-    return null;
-  }
-
-  return decodeURIComponent(cookie.substring(name.length + 1));
-}
 
 export function AppSidebar() {
   const pathname = usePathname();
