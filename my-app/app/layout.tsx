@@ -3,6 +3,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { NextIntlClientProvider } from "next-intl";
+import { ReactNode } from "react";
+
+type Props = {
+  children: ReactNode
+  params: { locale: string }
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,22 +26,23 @@ export const metadata: Metadata = {
   description: "Bicycle store inventory management system",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  params,
+}: Readonly<Props>) {
   return (
-    <html lang="en">
+    <html lang={params.locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SidebarProvider>
-          <AppSidebar />
-          <main className="flex-1">
-            {children}
-          </main>
-        </SidebarProvider>
+        <NextIntlClientProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <main className="flex-1">
+              {children}
+            </main>
+          </SidebarProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

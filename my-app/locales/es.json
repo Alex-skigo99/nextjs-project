@@ -1,0 +1,28 @@
+{
+  "contact": {
+    "pageTitle": "Contáctanos",
+    "pageDescription": "Ponte en contacto con nuestra tienda de bicicletas",
+    "storeLocationsTitle": "Sucursales",
+    "storeLocationsDescription": "Visítanos en cualquiera de nuestras sedes",
+    "storeDowntownName": "Sucursal Centro",
+    "storeDowntownAddress": "123 Calle Principal, Centro",
+    "storeUptownName": "Sucursal Uptown",
+    "storeUptownAddress": "456 Avenida del Parque, Uptown",
+    "storeWestName": "Sucursal West Side",
+    "storeWestAddress": "789 Bulevar Oeste, West Side",
+    "phoneLabel": "Teléfono:",
+    "hoursLabel": "Horario:",
+    "storeDowntownHours": "Lun-Vie 9AM-6PM, Sáb 10AM-5PM",
+    "storeUptownHours": "Lun-Vie 10AM-7PM, Sáb-Dom 10AM-6PM",
+    "storeWestHours": "Lun-Sáb 9AM-5PM, Dom cerrado",
+    "formTitle": "Envíanos un mensaje",
+    "formDescription": "Te responderemos lo antes posible",
+    "formNameLabel": "Nombre",
+    "formNamePlaceholder": "Tu nombre",
+    "formEmailLabel": "Correo electrónico",
+    "formEmailPlaceholder": "tu@email.com",
+    "formMessageLabel": "Mensaje",
+    "formMessagePlaceholder": "Tu mensaje...",
+    "formSendButton": "Enviar mensaje"
+  }
+}
