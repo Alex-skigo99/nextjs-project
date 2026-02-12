@@ -7,9 +7,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { ReactNode } from "react";
 
 type Props = {
-  children: ReactNode
-  params: { locale: string }
-}
+  children: ReactNode;
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,21 +25,14 @@ export const metadata: Metadata = {
   description: "Bicycle store inventory management system",
 };
 
-export default async function RootLayout({
-  children,
-  params,
-}: Readonly<Props>) {
+export default async function RootLayout({ children }: Readonly<Props>) {
   return (
-    <html lang={params.locale}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider>
           <SidebarProvider>
             <AppSidebar />
-            <main className="flex-1">
-              {children}
-            </main>
+            <main className="flex-1">{children}</main>
           </SidebarProvider>
         </NextIntlClientProvider>
       </body>

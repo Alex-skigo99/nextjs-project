@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -10,18 +9,19 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { LayoutDashboard, Mail } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES, CONTACT_LOCALE_COOKIE } from "@/const/locale";
-import { readCookieValue } from "@/utils/readCookieValue";
+import LocaleSwitcher from "./LocaleSwitcher";
+import { Locale } from "next-intl";
+import { changeLocaleAction } from "@/utils/changeLocaleAction";
 
 type MenuItem = {
   label: string;
   href: string;
   icon: LucideIcon;
-  localized?: boolean;
 };
 
 const menuItems: MenuItem[] = [
@@ -34,22 +34,15 @@ const menuItems: MenuItem[] = [
     label: "Contact",
     href: "/contact",
     icon: Mail,
-    localized: true,
   },
 ];
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const [locale, setLocale] = useState(DEFAULT_LOCALE);
 
-  useEffect(() => {
-    const cookieLocale = readCookieValue(CONTACT_LOCALE_COOKIE);
-    if (!cookieLocale || !SUPPORTED_LOCALES.includes(cookieLocale)) {
-      return;
-    }
-
-    setLocale((current) => (current === cookieLocale ? current : cookieLocale));
-  }, []);
+  async function handleLocaleChange(locale: Locale) {
+    await changeLocaleAction(locale);
+  }
 
   return (
     <Sidebar>
@@ -63,12 +56,11 @@ export function AppSidebar() {
         <SidebarMenu>
           {menuItems.map((item) => {
             const Icon = item.icon;
-            const targetHref = item.localized ? `${item.href}/${locale}` : item.href;
-            const isActive = pathname === targetHref || (item.localized && pathname === item.href);
+            const isActive = pathname === item.href;
             return (
               <SidebarMenuItem key={item.href}>
                 <SidebarMenuButton asChild isActive={isActive}>
-                  <Link href={targetHref} className={cn("flex items-center gap-2", isActive && "bg-accent")}>
+                  <Link href={item.href} className={cn("flex items-center gap-2", isActive && "bg-accent")}>
                     <Icon className="h-4 w-4" />
                     <span>{item.label}</span>
                   </Link>
@@ -78,6 +70,9 @@ export function AppSidebar() {
           })}
         </SidebarMenu>
       </SidebarContent>
+      <SidebarFooter className="mb-12 border-t">
+        <LocaleSwitcher handleLocaleChange={handleLocaleChange} />
+      </SidebarFooter>
     </Sidebar>
   );
 }
