@@ -1,22 +1,8 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 import { StringKeys } from "@/types/generalTypes";
 import { getTableOptionsConfig } from "@/utils/getTableOptionsConfig";
-import {
-  ColumnDef,
-  flexRender,
-  PaginationState,
-  Row,
-  RowSelectionState,
-  useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef, flexRender, PaginationState, Row, RowSelectionState, useReactTable } from "@tanstack/react-table";
 import React from "react";
 import { Spinner } from "@/components/ui/spinner";
 import { TablePagination } from "./TablePagination";
@@ -38,7 +24,6 @@ type tGeneralTable<TState, TData extends TState, TValue> = {
   totalRows?: number;
   getRowClassName?: (row: TData) => string;
   isRowDisabled?: (row: TData) => boolean | undefined;
-  isGmbLocationLinkTable?: boolean;
   nextPageToken?: string | null;
 };
 
@@ -59,7 +44,6 @@ export default function GeneralTable<TState, TData extends TState, TValue>({
   totalRows,
   getRowClassName,
   isRowDisabled,
-  isGmbLocationLinkTable,
   nextPageToken,
 }: tGeneralTable<TState, TData, TValue>) {
   const tableOptions = React.useMemo(
@@ -75,24 +59,14 @@ export default function GeneralTable<TState, TData extends TState, TValue>({
         setPagination,
         totalRows,
       }),
-    [
-      data,
-      columns,
-      rowSelection,
-      setRowSelection,
-      rowIdField,
-      isPaginationNeeded,
-      pagination,
-      setPagination,
-      totalRows,
-    ]
+    [data, columns, rowSelection, setRowSelection, rowIdField, isPaginationNeeded, pagination, setPagination, totalRows]
   );
 
   const table = useReactTable(tableOptions);
 
   return (
     <div className={cn("flex flex-col")}>
-      <div className="overflow-auto max-h-[calc(100vh-200px)]">
+      <div className="max-h-[calc(100vh-200px)] overflow-auto">
         <Table className="table-fixed border-collapse bg-white">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -108,9 +82,7 @@ export default function GeneralTable<TState, TData extends TState, TValue>({
                     )}
                     style={{ width: header.getSize() }}
                   >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
               </TableRow>
@@ -177,7 +149,6 @@ export default function GeneralTable<TState, TData extends TState, TValue>({
         table={table}
         isPaginationNeeded={isPaginationNeeded}
         totalItems={totalRows ?? 0}
-        isGmbLocationLinkTable={isGmbLocationLinkTable}
         nextPageToken={nextPageToken}
       />
     </div>

@@ -8,7 +8,6 @@ interface TablePaginationProps<TData> {
   table: Table<TData>;
   isPaginationNeeded?: boolean;
   totalItems: number;
-  isGmbLocationLinkTable?: boolean;
   nextPageToken?: string | null;
 }
 
@@ -16,13 +15,12 @@ export function TablePagination<TData>({
   table,
   isPaginationNeeded = false,
   totalItems,
-  isGmbLocationLinkTable = false,
   nextPageToken,
 }: TablePaginationProps<TData>) {
   const { pageIndex, pageSize } = table.getState().pagination;
   const startItem = pageIndex * pageSize + 1;
   const endItem = Math.min((pageIndex + 1) * pageSize, totalItems);
-  
+
   const isMobile = typeof window !== "undefined" ? window.innerWidth < 640 : false;
 
   return (
@@ -31,27 +29,17 @@ export function TablePagination<TData>({
         {totalItems > 0 && !isMobile
           ? `Showing ${startItem} to ${endItem} of ${totalItems} ${totalItems === 1 ? "entry" : "entries"}`
           : null}
-        {totalItems > 0 && isMobile
-          ? `${startItem} to ${endItem} of ${totalItems}`
-          : null}
+        {totalItems > 0 && isMobile ? `${startItem} to ${endItem} of ${totalItems}` : null}
       </div>
 
       <div className="flex items-center space-x-4">
         {totalItems > 0 && (
           <div className="flex items-center gap-2">
             <p className="text-xs">
-              {!isMobile && (
-              <span>
-                Rows
-                {" "}
-              </span>
-              )}
-               per page:
-              </p>
-            <Select
-              value={pageSize.toString()}
-              onValueChange={(value) => table.setPageSize(Number(value))}
-            >
+              {!isMobile && <span>Rows </span>}
+              per page:
+            </p>
+            <Select value={pageSize.toString()} onValueChange={(value) => table.setPageSize(Number(value))}>
               <SelectTrigger className="cursor-pointer">
                 <SelectValue placeholder="Page Size" />
               </SelectTrigger>
@@ -76,12 +64,7 @@ export function TablePagination<TData>({
             >
               Previous
             </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage() || (isGmbLocationLinkTable && !nextPageToken)}
-            >
+            <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
               Next
             </Button>
           </div>

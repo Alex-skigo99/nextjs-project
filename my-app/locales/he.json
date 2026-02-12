@@ -20,9 +20,39 @@
     "formNameLabel": "שם",
     "formNamePlaceholder": "השם שלך",
     "formEmailLabel": "אימייל",
-    "formEmailPlaceholder": "האימייל שלך",
+    "formEmailPlaceholder": "your@email.com",
     "formMessageLabel": "הודעה",
     "formMessagePlaceholder": "ההודעה שלך...",
     "formSendButton": "שלח הודעה"
+  },
+  "dashboard": {
+    "pageTitle": "לוח בקרה של חנות אופניים",
+    "welcomeMessage": "נהל את מלאי האופניים וההנכסות שלך",
+    "statsProduct": {
+      "title": "סטטיסטיקות מוצרים",
+      "description": "סקירה כללית של מלאי האופניים שלך",
+      "units": "מודלים שונים"
+    },
+    "statsInventory": {
+      "title": "סה״כ מלאי",
+      "description": "מספר כולל של אופניים במלאי",
+      "units": "יחידות במלאי"
+    },
+    "statsAveragePrice": {
+      "title": "מחיר ממוצע",
+      "description": "מחיר ממוצע של אופניים במלאי",
+      "units": "לכל אופנוע"
+    },
+    "statsValue": {
+      "title": "ערך כולל",
+      "description": "ערך כולל של מלאי האופניים שלך",
+      "units": "ערך מלאי"
+    }
+  },
+  "appSidebar": {
+    "title": "BikeStore",
+    "subtitle": "מלאי אופניים",
+    "contact": "צור קשר",
+    "dashboard": "לוח בקרה"
   }
 }

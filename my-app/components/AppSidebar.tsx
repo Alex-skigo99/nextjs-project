@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
 import {
   Sidebar,
   SidebarContent,
@@ -17,6 +18,8 @@ import { cn } from "@/lib/utils";
 import LocaleSwitcher from "./LocaleSwitcher";
 import { Locale } from "next-intl";
 import { changeLocaleAction } from "@/utils/changeLocaleAction";
+import { isRTLLocale } from "@/lib/rtl";
+import { useTranslations } from "next-intl";
 
 type MenuItem = {
   label: string;
@@ -24,32 +27,35 @@ type MenuItem = {
   icon: LucideIcon;
 };
 
-const menuItems: MenuItem[] = [
-  {
-    label: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    label: "Contact",
-    href: "/contact",
-    icon: Mail,
-  },
-];
-
 export function AppSidebar() {
   const pathname = usePathname();
+  const locale = useLocale();
+  const sidebarSide = isRTLLocale(locale) ? "right" : "left";
+  const t = useTranslations("appSidebar");
+
+  const menuItems: MenuItem[] = [
+    {
+      label: t("dashboard"),
+      href: "/dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      label: t("contact"),
+      href: "/contact",
+      icon: Mail,
+    },
+  ];
 
   async function handleLocaleChange(locale: Locale) {
     await changeLocaleAction(locale);
   }
 
   return (
-    <Sidebar>
+    <Sidebar side={sidebarSide}>
       <SidebarHeader className="border-b">
         <div className="px-2 py-3">
-          <h1 className="text-lg font-bold">🚴 BikeStore</h1>
-          <p className="text-muted-foreground text-xs">Bicycle Inventory</p>
+          <h1 className="text-lg font-bold">🚴 {t("title")}</h1>
+          <p className="text-muted-foreground text-xs">{t("subtitle")}</p>
         </div>
       </SidebarHeader>
       <SidebarContent>

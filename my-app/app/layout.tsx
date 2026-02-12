@@ -4,6 +4,8 @@ import "./globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
+import { getDirection } from "@/lib/rtl";
 import { ReactNode } from "react";
 
 type Props = {
@@ -26,8 +28,11 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: Readonly<Props>) {
+  const locale = await getLocale();
+  const direction = getDirection(locale);
+
   return (
-    <html lang="en">
+    <html lang={locale} dir={direction}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider>
           <SidebarProvider>

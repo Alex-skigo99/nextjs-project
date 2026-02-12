@@ -24,5 +24,35 @@
     "formMessageLabel": "Message",
     "formMessagePlaceholder": "Your message...",
     "formSendButton": "Send Message"
+  },
+  "dashboard": {
+    "pageTitle": "Bicycle Store Dashboard",
+    "welcomeMessage": "Manage your bicycle inventory and sales",
+    "statsProduct": {
+      "title": "Product Statistics",
+      "description": "Overview of your bicycle inventory",
+      "units": "different models"
+    },
+    "statsInventory": {
+      "title": "Total Inventory",
+      "description": "Total number of bicycles in stock",
+      "units": "units in stock"
+    },
+    "statsAveragePrice": {
+      "title": "Average Price",
+      "description": "Average price of bicycles in your inventory",
+      "units": "per bike"
+    },
+    "statsValue": {
+      "title": "Total Value",
+      "description": "Total value of your bicycle inventory",
+      "units": "inventory value"
+    }
+  },
+  "appSidebar": {
+    "title": "BikeStore",
+    "subtitle": "Bicycle Inventory",
+    "contact": "Contact",
+    "dashboard": "Dashboard"
   }
 }

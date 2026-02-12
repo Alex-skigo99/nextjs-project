@@ -24,5 +24,35 @@
     "formMessageLabel": "Mensaje",
     "formMessagePlaceholder": "Tu mensaje...",
     "formSendButton": "Enviar mensaje"
+  },
+  "dashboard": {
+    "pageTitle": "Panel de control de tienda de bicicletas",
+    "welcomeMessage": "Administre su inventario y ventas de bicicletas",
+    "statsProduct": {
+      "title": "Estadísticas de productos",
+      "description": "Descripción general de su inventario de bicicletas",
+      "units": "modelos diferentes"
+    },
+    "statsInventory": {
+      "title": "Inventario total",
+      "description": "Número total de bicicletas en stock",
+      "units": "unidades en stock"
+    },
+    "statsAveragePrice": {
+      "title": "Precio promedio",
+      "description": "Precio promedio de bicicletas en su inventario",
+      "units": "por bicicleta"
+    },
+    "statsValue": {
+      "title": "Valor total",
+      "description": "Valor total de su inventario de bicicletas",
+      "units": "valor del inventario"
+    }
+  },
+  "appSidebar": {
+    "title": "BikeStore",
+    "subtitle": "Inventario de bicicletas",
+    "contact": "Contacto",
+    "dashboard": "Panel de control"
   }
 }
