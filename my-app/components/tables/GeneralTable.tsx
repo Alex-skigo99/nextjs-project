@@ -65,7 +65,7 @@ export default function GeneralTable<TState, TData extends TState, TValue>({
   const table = useReactTable(tableOptions);
 
   return (
-    <div className={cn("flex flex-col")}>
+    <div className={cn("flex flex-col")} dir="ltr">
       <div className="max-h-[calc(100vh-200px)] overflow-auto">
         <Table className="table-fixed border-collapse bg-white">
           <TableHeader>

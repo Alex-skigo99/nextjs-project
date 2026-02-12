@@ -15,7 +15,7 @@ interface ProductsListProps {
 export function ProductsList({ initialProducts = [], initialIsPending = false }: ProductsListProps) {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 5,
   });
 
   const { products, isPending, paginationData } = useProducts(pagination);
